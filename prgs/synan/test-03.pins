@@ -1,0 +1,7 @@
+fun a():void = {
+    while (x != 2) do
+        if (y != 1) then
+            x = x-1;
+        end;
+    end;
+};

@@ -1,0 +1,66 @@
+fun a() : int = 1 != 2 | 3 == 4 & 5 <= 6 & !7 < -8 % 2;
+
+#{Should output: (locations might vary)
+  AstFunDecl(a) @(1.1-1.3)
+    {Pars}
+    AstAtomType(INT) @(1.11-1.13)
+      describesType:
+        Int
+    AstBinExpr(OR) @(1.24-1.24)
+      exprOfType:
+        Int
+      AstBinExpr(NEQ) @(1.19-1.20)
+        exprOfType:
+          Int
+        AstConstExpr(INT,1) @(1.17-1.17)
+          exprOfType:
+            Int
+        AstConstExpr(INT,2) @(1.22-1.22)
+          exprOfType:
+            Int
+      AstBinExpr(AND) @(1.33-1.33)
+        exprOfType:
+          Int
+        AstBinExpr(EQU) @(1.28-1.29)
+          exprOfType:
+            Int
+          AstConstExpr(INT,3) @(1.26-1.26)
+            exprOfType:
+              Int
+          AstConstExpr(INT,4) @(1.31-1.31)
+            exprOfType:
+              Int
+        AstBinExpr(AND) @(1.42-1.42)
+          exprOfType:
+            Int
+          AstBinExpr(LEQ) @(1.37-1.38)
+            exprOfType:
+              Int
+            AstConstExpr(INT,5) @(1.35-1.35)
+              exprOfType:
+                Int
+            AstConstExpr(INT,6) @(1.40-1.40)
+              exprOfType:
+                Int
+          AstBinExpr(LTH) @(1.47-1.47)
+            exprOfType:
+              Int
+            AstPreExpr(NOT) @(1.44-1.44)
+              exprOfType:
+                Int
+              AstConstExpr(INT,7) @(1.45-1.45)
+                exprOfType:
+                  Int
+            AstBinExpr(MOD) @(1.52-1.52)
+              exprOfType:
+                Int
+              AstPreExpr(SUB) @(1.49-1.49)
+                exprOfType:
+                  Int
+                AstConstExpr(INT,8) @(1.50-1.50)
+                  exprOfType:
+                    Int
+              AstConstExpr(INT,2) @(1.54-1.54)
+                exprOfType:
+                  Int
+}#

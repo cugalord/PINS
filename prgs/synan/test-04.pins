@@ -1,0 +1,5 @@
+fun a():void = (
+    y + 2 where
+        typ namedType = void;
+        var definedVar : int;
+);

@@ -1,0 +1,130 @@
+var a : int;
+var b : char;
+var c : void;
+var d : ^int;
+var e : [2]char;
+var f : [2]^void;
+var g : ^[2]int;
+var h : ^[2]^char;
+var i : ^^void;
+var j : [2][2]int;
+
+#{Should output: (locations might vary)
+  AstVarDecl(a) @(1.1-1.3)
+    AstAtomType(INT) @(1.9-1.11)
+      describesType:
+        Int
+  AstVarDecl(b) @(2.1-2.3)
+    AstAtomType(CHAR) @(2.9-2.12)
+      describesType:
+        Char
+  AstVarDecl(c) @(3.1-3.3)
+    AstAtomType(VOID) @(3.9-3.12)
+      describesType:
+        Void
+  AstVarDecl(d) @(4.1-4.3)
+    AstPtrType @(4.9-4.9)
+      describesType:
+        Ptr
+          Int
+      AstAtomType(INT) @(4.10-4.12)
+        describesType:
+          Int
+  AstVarDecl(e) @(5.1-5.3)
+    AstArrType @(5.9-5.9)
+      describesType:
+        Arr(2)
+          Char
+      AstAtomType(CHAR) @(5.12-5.15)
+        describesType:
+          Char
+      AstConstExpr(INT,2) @(5.10-5.10)
+        exprOfType:
+          Int
+  AstVarDecl(f) @(6.1-6.3)
+    AstArrType @(6.9-6.9)
+      describesType:
+        Arr(2)
+          Ptr
+            Void
+      AstPtrType @(6.12-6.12)
+        describesType:
+          Ptr
+            Void
+        AstAtomType(VOID) @(6.13-6.16)
+          describesType:
+            Void
+      AstConstExpr(INT,2) @(6.10-6.10)
+        exprOfType:
+          Int
+  AstVarDecl(g) @(7.1-7.3)
+    AstPtrType @(7.9-7.9)
+      describesType:
+        Ptr
+          Arr(2)
+            Int
+      AstArrType @(7.10-7.10)
+        describesType:
+          Arr(2)
+            Int
+        AstAtomType(INT) @(7.13-7.15)
+          describesType:
+            Int
+        AstConstExpr(INT,2) @(7.11-7.11)
+          exprOfType:
+            Int
+  AstVarDecl(h) @(8.1-8.3)
+    AstPtrType @(8.9-8.9)
+      describesType:
+        Ptr
+          Arr(2)
+            Ptr
+              Char
+      AstArrType @(8.10-8.10)
+        describesType:
+          Arr(2)
+            Ptr
+              Char
+        AstPtrType @(8.13-8.13)
+          describesType:
+            Ptr
+              Char
+          AstAtomType(CHAR) @(8.14-8.17)
+            describesType:
+              Char
+        AstConstExpr(INT,2) @(8.11-8.11)
+          exprOfType:
+            Int
+  AstVarDecl(i) @(9.1-9.3)
+    AstPtrType @(9.9-9.9)
+      describesType:
+        Ptr
+          Ptr
+            Void
+      AstPtrType @(9.10-9.10)
+        describesType:
+          Ptr
+            Void
+        AstAtomType(VOID) @(9.11-9.14)
+          describesType:
+            Void
+  AstVarDecl(j) @(10.1-10.3)
+    AstArrType @(10.9-10.9)
+      describesType:
+        Arr(2)
+          Arr(2)
+            Int
+      AstArrType @(10.12-10.12)
+        describesType:
+          Arr(2)
+            Int
+        AstAtomType(INT) @(10.15-10.17)
+          describesType:
+            Int
+        AstConstExpr(INT,2) @(10.13-10.13)
+          exprOfType:
+            Int
+      AstConstExpr(INT,2) @(10.10-10.10)
+        exprOfType:
+          Int
+}#

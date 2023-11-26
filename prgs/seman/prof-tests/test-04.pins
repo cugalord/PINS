@@ -1,0 +1,98 @@
+typ number=int;
+var a:number;
+var b:int;
+fun main(argc:number):void = { 
+	while 1+a+b > 0 do 
+		argc = 2*argc+a; 
+	end; 
+};
+
+#{Should output: (locations might vary)
+  AstTypDecl(number) @(1.1-1.3)
+    declaresType:
+      Name(number)
+      Int
+    AstAtomType(INT) @(1.12-1.14)
+      describesType:
+        Int
+  AstVarDecl(a) @(2.1-2.3)
+    AstTypeName(number) @(2.7-2.12)
+      declaredAt: 1.1-1.3
+      describesType:
+        Name(number)
+  AstVarDecl(b) @(3.1-3.3)
+    AstAtomType(INT) @(3.7-3.9)
+      describesType:
+        Int
+  AstFunDecl(main) @(4.1-4.3)
+    {Pars}
+      AstParDecl(argc) @(4.10-4.13)
+        AstTypeName(number) @(4.15-4.20)
+          declaredAt: 1.1-1.3
+          describesType:
+            Name(number)
+    AstAtomType(VOID) @(4.23-4.26)
+      describesType:
+        Void
+    AstStmtExpr @(4.30-4.30)
+      exprOfType:
+        Void
+      {Stmts}
+          AstWhileStmt @(5.9-5.13)
+            stmtOfType:
+              Void
+            AstBinExpr(GTH) @(5.21-5.21)
+              exprOfType:
+                Int
+              AstBinExpr(ADD) @(5.16-5.16)
+                exprOfType:
+                  Int
+                AstConstExpr(INT,1) @(5.15-5.15)
+                  exprOfType:
+                    Int
+                AstBinExpr(ADD) @(5.18-5.18)
+                  exprOfType:
+                    Int
+                  AstNameExpr(a) @(5.17-5.17)
+                    declaredAt: 2.1-2.3
+                    exprOfType:
+                      Name(number)
+                  AstNameExpr(b) @(5.19-5.19)
+                    declaredAt: 3.1-3.3
+                    exprOfType:
+                      Int
+              AstConstExpr(INT,0) @(5.23-5.23)
+                exprOfType:
+                  Int
+            AstExprStmt @(6.17-6.20)
+              stmtOfType:
+                Void
+              AstStmtExpr @(6.17-6.20)
+                exprOfType:
+                  Void
+                {Stmts}
+                    AstAssignStmt @(6.17-6.20)
+                      stmtOfType:
+                        Void
+                      AstNameExpr(argc) @(6.17-6.20)
+                        declaredAt: 4.10-4.13
+                        exprOfType:
+                          Name(number)
+                      AstBinExpr(ADD) @(6.30-6.30)
+                        exprOfType:
+                          Int
+                        AstBinExpr(MUL) @(6.25-6.25)
+                          exprOfType:
+                            Int
+                          AstConstExpr(INT,2) @(6.24-6.24)
+                            exprOfType:
+                              Int
+                          AstNameExpr(argc) @(6.26-6.29)
+                            declaredAt: 4.10-4.13
+                            exprOfType:
+                              Name(number)
+                        AstNameExpr(a) @(6.31-6.31)
+                          declaredAt: 2.1-2.3
+                          exprOfType:
+                            Name(number)
+}#

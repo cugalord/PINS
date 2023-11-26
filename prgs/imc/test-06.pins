@@ -1,0 +1,214 @@
+fun a() : int = 3 * 2;
+
+var c : int;
+
+fun b() : void = {c = 5;};
+
+fun d() : int = {
+    (
+        g
+        where
+        var g : int;
+            fun h() : int = {
+                (
+                    g
+                    where
+                        fun i() : int = g;
+                );
+            };
+    );
+};
+
+#{Should output: (locations might vary)
+  AstFunDecl(a) @(1.1-1.3)
+      Frame(_a,16=16+0+0,T0,T1,1)
+    {Pars}
+    AstAtomType(INT) @(1.11-1.13)
+      describesType:
+        Int
+    AstBinExpr(MUL) @(1.19-1.19)
+      exprOfType:
+        Int
+      exprImc:
+        BINOP
+          CONST(3)
+          CONST(2)
+      AstConstExpr(INT,3) @(1.17-1.17)
+        exprOfType:
+          Int
+        exprImc:
+          CONST(3)
+      AstConstExpr(INT,2) @(1.21-1.21)
+        exprOfType:
+          Int
+        exprImc:
+          CONST(2)
+  AstVarDecl(c) @(3.1-3.3)
+      AbsAccess(8,_c)
+    AstAtomType(INT) @(3.9-3.11)
+      describesType:
+        Int
+  AstFunDecl(b) @(5.1-5.3)
+      Frame(_b,16=16+0+0,T2,T3,1)
+    {Pars}
+    AstAtomType(VOID) @(5.11-5.14)
+      describesType:
+        Void
+    AstStmtExpr @(5.18-5.18)
+      exprOfType:
+        Void
+      exprImc:
+        SEXPR
+          STMTS
+            MOVE
+              MEM
+                NAME(_c)
+              CONST(5)
+          CONST(0)
+      {Stmts}
+          AstAssignStmt @(5.19-5.19)
+            stmtOfType:
+              Void
+            stmtImc:
+              MOVE
+                MEM
+                  NAME(_c)
+                CONST(5)
+            AstNameExpr(c) @(5.19-5.19)
+              declaredAt: 3.1-3.3
+              exprOfType:
+                Int
+              exprImc:
+                MEM
+                  NAME(_c)
+            AstConstExpr(INT,5) @(5.23-5.23)
+              exprOfType:
+                Int
+              exprImc:
+                CONST(5)
+  AstFunDecl(d) @(7.1-7.3)
+      Frame(_d,24=16+8+0,T8,T9,1)
+    {Pars}
+    AstAtomType(INT) @(7.11-7.13)
+      describesType:
+        Int
+    AstStmtExpr @(7.17-7.17)
+      exprOfType:
+        Int
+      exprImc:
+        SEXPR
+          STMTS
+            ESTMT
+              MEM
+                BINOP
+                  TEMP(T8)
+                  CONST(-8)
+          MEM
+            BINOP
+              TEMP(T8)
+              CONST(-8)
+      {Stmts}
+          AstExprStmt @(10.9-10.13)
+            stmtOfType:
+              Int
+            stmtImc:
+              ESTMT
+                MEM
+                  BINOP
+                    TEMP(T8)
+                    CONST(-8)
+            AstWhereExpr @(10.9-10.13)
+              exprOfType:
+                Int
+              exprImc:
+                MEM
+                  BINOP
+                    TEMP(T8)
+                    CONST(-8)
+              {Decls}
+                  AstVarDecl(g) @(11.9-11.11)
+                      RelAccess(8,-8,2)
+                    AstAtomType(INT) @(11.17-11.19)
+                      describesType:
+                        Int
+                  AstFunDecl(h) @(12.13-12.15)
+                      Frame(L1,16=16+0+0,T6,T7,2)
+                    {Pars}
+                    AstAtomType(INT) @(12.23-12.25)
+                      describesType:
+                        Int
+                    AstStmtExpr @(12.29-12.29)
+                      exprOfType:
+                        Int
+                      exprImc:
+                        SEXPR
+                          STMTS
+                            ESTMT
+                              MEM
+                                BINOP
+                                  MEM
+                                    TEMP(T6)
+                                  CONST(-8)
+                          MEM
+                            BINOP
+                              MEM
+                                TEMP(T6)
+                              CONST(-8)
+                      {Stmts}
+                          AstExprStmt @(15.21-15.25)
+                            stmtOfType:
+                              Int
+                            stmtImc:
+                              ESTMT
+                                MEM
+                                  BINOP
+                                    MEM
+                                      TEMP(T6)
+                                    CONST(-8)
+                            AstWhereExpr @(15.21-15.25)
+                              exprOfType:
+                                Int
+                              exprImc:
+                                MEM
+                                  BINOP
+                                    MEM
+                                      TEMP(T6)
+                                    CONST(-8)
+                              {Decls}
+                                  AstFunDecl(i) @(16.25-16.27)
+                                      Frame(L0,16=16+0+0,T4,T5,3)
+                                    {Pars}
+                                    AstAtomType(INT) @(16.35-16.37)
+                                      describesType:
+                                        Int
+                                    AstNameExpr(g) @(16.41-16.41)
+                                      declaredAt: 11.9-11.11
+                                      exprOfType:
+                                        Int
+                                      exprImc:
+                                        MEM
+                                          BINOP
+                                            MEM
+                                              MEM
+                                                TEMP(T4)
+                                            CONST(-8)
+                              AstNameExpr(g) @(14.21-14.21)
+                                declaredAt: 11.9-11.11
+                                exprOfType:
+                                  Int
+                                exprImc:
+                                  MEM
+                                    BINOP
+                                      MEM
+                                        TEMP(T6)
+                                      CONST(-8)
+              AstNameExpr(g) @(9.9-9.9)
+                declaredAt: 11.9-11.11
+                exprOfType:
+                  Int
+                exprImc:
+                  MEM
+                    BINOP
+                      TEMP(T8)
+                      CONST(-8)
+}#

@@ -1,0 +1,15 @@
+typ number=int;
+fun main(i:int):void = { 
+	if i>0 then 
+		while i>0 do 
+			i = i-1; 
+			main(i); 
+		end; 
+	end; 
+	none; 
+	0;
+};
+
+#{Should output: (locations might vary)
+:-( [2.17-2.20] Semantic error: Actual return type (int) does not match expected return type (void).
+}#

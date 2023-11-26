@@ -1,0 +1,5 @@
+fun a(b : void) : void = none;
+
+#{Should output: (locations might vary)
+:-( [1.11-1.14] Semantic error: Parameter (b) cannot be of type void.
+}#

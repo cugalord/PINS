@@ -1,0 +1,69 @@
+var a : int;
+var b : int;
+fun c() : int = -a + (^b)^;
+
+#{Not 100% about this test}#
+#{Should output: (locations might vary)
+  AstVarDecl(a) @(1.1-1.3)
+      AbsAccess(8,_a)
+    AstAtomType(INT) @(1.9-1.11)
+      describesType:
+        Int
+  AstVarDecl(b) @(2.1-2.3)
+      AbsAccess(8,_b)
+    AstAtomType(INT) @(2.9-2.11)
+      describesType:
+        Int
+  AstFunDecl(c) @(3.1-3.3)
+      Frame(_c,16=16+0+0,T0,T1,1)
+    {Pars}
+    AstAtomType(INT) @(3.11-3.13)
+      describesType:
+        Int
+    AstBinExpr(ADD) @(3.20-3.20)
+      exprOfType:
+        Int
+      exprImc:
+        BINOP
+          UNOP
+            MEM
+              NAME(_a)
+          MEM
+            MEM
+              NAME(_b)
+      AstPreExpr(SUB) @(3.17-3.17)
+        exprOfType:
+          Int
+        exprImc:
+          UNOP
+            MEM
+              NAME(_a)
+        AstNameExpr(a) @(3.18-3.18)
+          declaredAt: 1.1-1.3
+          exprOfType:
+            Int
+          exprImc:
+            MEM
+              NAME(_a)
+      AstPstExpr(PTR) @(3.26-3.26)
+        exprOfType:
+          Int
+        exprImc:
+          MEM
+            MEM
+              NAME(_b)
+        AstPreExpr(PTR) @(3.23-3.23)
+          exprOfType:
+            Ptr
+              Int
+          exprImc:
+            MEM
+              NAME(_b)
+          AstNameExpr(b) @(3.24-3.24)
+            declaredAt: 2.1-2.3
+            exprOfType:
+              Int
+            exprImc:
+              MEM
+                NAME(_b)
+}#

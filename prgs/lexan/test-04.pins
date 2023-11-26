@@ -1,0 +1,21 @@
+none,nil,0412341
+-1000
++1000
+'a' '\\' '\''
+(){}[],:;&|! == !=<><=>=*/%+-^= ===
+char del do else end fun if int new then typ var void where while
+TestIdentifier _2testIdentifier
+#{
+To je komentar, ki naj se ne izpise
+#{ To je gnezden komentar, ki naj se tudi ne izpise }#
+}#
+
+VmesniID
+
+char a ='\'';
+
+#{
+
+}
+Nezakljucen komentar, vseeno naj se ne izpise
+$~`@}

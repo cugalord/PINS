@@ -1,0 +1,54 @@
+typ a = b;
+typ b = c;
+typ c = d;
+typ d = e;
+typ e = int;
+
+var x : a;
+
+#{Should output: (locations might vary)
+  AstTypDecl(a) @(1.1-1.3)
+    declaresType:
+      Name(a)
+      Int
+    AstTypeName(b) @(1.9-1.9)
+      declaredAt: 2.1-2.3
+      describesType:
+        Int
+  AstTypDecl(b) @(2.1-2.3)
+    declaresType:
+      Name(b)
+      Int
+    AstTypeName(c) @(2.9-2.9)
+      declaredAt: 3.1-3.3
+      describesType:
+        Int
+  AstTypDecl(c) @(3.1-3.3)
+    declaresType:
+      Name(c)
+      Int
+    AstTypeName(d) @(3.9-3.9)
+      declaredAt: 4.1-4.3
+      describesType:
+        Int
+  AstTypDecl(d) @(4.1-4.3)
+    declaresType:
+      Name(d)
+      Int
+    AstTypeName(e) @(4.9-4.9)
+      declaredAt: 5.1-5.3
+      describesType:
+        Int
+  AstTypDecl(e) @(5.1-5.3)
+    declaresType:
+      Name(e)
+      Int
+    AstAtomType(INT) @(5.9-5.11)
+      describesType:
+        Int
+  AstVarDecl(x) @(7.1-7.3)
+    AstTypeName(a) @(7.9-7.9)
+      declaredAt: 1.1-1.3
+      describesType:
+        Int
+}#

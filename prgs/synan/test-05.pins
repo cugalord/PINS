@@ -1,0 +1,16 @@
+fun method(par1 : int, par2 : [5]char, par3 : ^void) : int = {
+    if (par1 == -3) then
+        par2[3] = 'c';
+        par3 = par2;
+    else
+        par1 = par1 + 1;
+        par3 = par1;
+    end;
+
+    par1 = 0;
+
+    while par1 != 5 do
+        a(par2[par1]);
+        par1 = par1 + 1;
+    end;
+};

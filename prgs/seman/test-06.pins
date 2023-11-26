@@ -1,0 +1,62 @@
+var a : int;
+
+fun b (c : char) : char = {
+    a = 5;
+    (((c : int) + a) : char);
+};
+
+#{Should output: (locations might vary)
+  AstVarDecl(a) @(1.1-1.3)
+    AstAtomType(INT) @(1.9-1.11)
+      describesType:
+        Int
+  AstFunDecl(b) @(3.1-3.3)
+    {Pars}
+      AstParDecl(c) @(3.8-3.8)
+        AstAtomType(CHAR) @(3.12-3.15)
+          describesType:
+            Char
+    AstAtomType(CHAR) @(3.20-3.23)
+      describesType:
+        Char
+    AstStmtExpr @(3.27-3.27)
+      exprOfType:
+        Char
+      {Stmts}
+          AstAssignStmt @(4.5-4.5)
+            stmtOfType:
+              Void
+            AstNameExpr(a) @(4.5-4.5)
+              declaredAt: 1.1-1.3
+              exprOfType:
+                Int
+            AstConstExpr(INT,5) @(4.9-4.9)
+              exprOfType:
+                Int
+          AstExprStmt @(5.22-5.22)
+            stmtOfType:
+              Char
+            AstCastExpr @(5.22-5.22)
+              exprOfType:
+                Char
+              AstBinExpr(ADD) @(5.17-5.17)
+                exprOfType:
+                  Int
+                AstCastExpr @(5.10-5.10)
+                  exprOfType:
+                    Int
+                  AstNameExpr(c) @(5.8-5.8)
+                    declaredAt: 3.8-3.8
+                    exprOfType:
+                      Char
+                  AstAtomType(INT) @(5.12-5.14)
+                    describesType:
+                      Int
+                AstNameExpr(a) @(5.19-5.19)
+                  declaredAt: 1.1-1.3
+                  exprOfType:
+                    Int
+              AstAtomType(CHAR) @(5.24-5.27)
+                describesType:
+                  Char
+}#

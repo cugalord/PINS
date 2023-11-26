@@ -1,0 +1,24 @@
+typ integer = int;
+var b : [2]integer;
+
+var result : char;
+
+fun c(g : [2]int) : char = {
+    result = '/';
+
+    if (g[0] > g[1]) then
+        result = '+';
+    else
+        if (g[0] < g[1]) then
+            result = '-';
+        else
+            result = '0';
+        end;
+    end;
+
+    result;
+};
+
+#{Should output: (locations might vary)
+:-( [6.11-6.11] Semantic error: Parameter (g) cannot be of type '[2]int'.
+}#

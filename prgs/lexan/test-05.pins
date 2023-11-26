@@ -1,0 +1,37 @@
+#{ PINS22 test 05 }#
+
+var x : int = 7; #{Output: var -> VAR, x -> ID, : -> COLON, int -> INT, = -> ASSIGN, 7 -> CONSTINT, ; -> SEMIC}#
+
+123abc456efg; #{Output: 123 -> CONSTINT, abc456efg -> ID, ; -> SEMIC}#
+
+varvarvar; #{Output: varvarvar -> ID, ; -> SEMIC}#
+
+done; #{Output: done -> DONE, ; -> SEMIC}#
+
+fun (x=7+3-2'a') #{Output: fun -> FUN, ( -> LPARENTHESIS, x -> ID, = -> ASSIGN , 7 -> CONSTINT, + -> ADD,
+3 -> CONSTINT, - -> SUB, 2 -> CONSTINT, 'a' -> CONSTCHAR, ) -> RPARENTHESIS}#
+
+____ #{Output: ____ -> ID}#
+
+'\'''\\''a' #{Output: '\'' -> CONSTCHAR, '\\' -> CONSTCHAR, 'a' -> CONSTCHAR}#
+
+#{Nothing #{ here }# should #{be}# #{displayed}# #{#{#{because}#}#}# comments}#
+
+var a[5] : void = {none,none,none,none,none};
+#{Output: var -> VAR, a -> ID, [ -> LBRACKET, 5 -> CONSTINT, ] -> RBRACKET, : -> COLON, void -> VOID,
+= -> ASSIGN, { -> LBRACE, none -> CONSTVOID, , -> COMMA, none -> CONSTVOID, , -> COMMA, none -> CONSTVOID, , -> COMMA,
+none -> CONSTVOID, , -> COMMA, none -> CONSTVOID, } -> RBRACE, ; -> SEMIC}#
+
+-123+456 #{- -> SUB, 123 -> CONSTINT, + -> ADD, 456 -> CONSTINT}#
+
+charx;+&===!=| #{charx -> ID, ; -> SEMIC, + -> ADD, & -> AND, == -> EQU, = -> ASSIGN, != NEQ, | -> OR}#
+
+a^do^typ_sub<>del #{Output: a -> ID, ^ -> PTR, do -> DO, ^ -> PTR, typ_sub -> ID, < -> LTH, > -> GTH, del -> DEL}#
+
+int a = 0000; #{Output: int -> INT, a -> ID, = -> ASSIGN, 0000 -> CONSTINT, ; -> SEMIC}#
+
+#{ }   # This should not be displayed }#
+
+#{ ' }#
+
+#{ }      # '''}#

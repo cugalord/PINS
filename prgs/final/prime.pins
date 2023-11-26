@@ -1,0 +1,51 @@
+fun isPrime(x : int, y : int) : int = ({
+    ret = -1;
+    if(x <= 2) then
+        if(x == 2) then
+            ret=1;
+        else
+            ret=0;
+        end;
+    else
+        if(ret != -1 & x % y == 0) then
+            ret=0;
+        end;
+         if (ret != -1 & y * y > x) then
+            ret=1;
+         else
+            if(ret == -1) then
+                ret = isPrime(x, y+1);
+            end;
+        end;
+    end;
+    ret;
+}where
+    var ret : int;
+);
+
+fun endl() : char = (10 : char);
+
+var i : int;
+var y : int;
+fun main(): void = {
+    putChar('E'); putChar('n'); putChar('t'); putChar('e'); putChar('r'); putChar(' '); putChar('a'); putChar(' '); putChar('n'); putChar('u'); putChar('m'); putChar('b'); putChar('e'); putChar('r'); putChar(':');  putChar(' ');
+    i = getInt();
+    endl();
+
+    y=2;
+
+    if(isPrime(i, 2) == 1) then
+        putChar('Y');putChar('e');putChar('s');
+    else
+        putChar('N');putChar('o');
+    end;
+    putChar(endl());
+};
+
+
+#{ Forward declarations <- Author: Otzi}#
+fun putChar(c : char) : void = none;
+fun getChar() : char = (0 : char);
+fun putInt(i : int) : void = none;
+fun getInt() : int = 0;
+fun randInt(min : int, max : int) : int = 0;

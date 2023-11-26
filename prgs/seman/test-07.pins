@@ -1,0 +1,267 @@
+var a : ^[8]integer;
+var size : natural;
+
+fun set(a : [8]int, counter : int, value : int) : ^[8]int = {
+    a[counter] = value;
+    ^a;
+};
+
+fun get(a : [8]int, counter : int) : int = {
+    a[counter];
+};
+
+fun main() : void = {
+    size = 0;
+    while (size < 8) do
+        a = set(a^, size, size);
+        size = size + 1;
+    end;
+};
+
+typ integer = int;
+typ natural = integer;
+
+#{Should output: (locations might vary)
+  AstVarDecl(a) @(1.1-1.3)
+    AstPtrType @(1.9-1.9)
+      describesType:
+        Ptr
+          Arr(8)
+            Int
+      AstArrType @(1.10-1.10)
+        describesType:
+          Arr(8)
+            Int
+        AstTypeName(integer) @(1.13-1.19)
+          declaredAt: 21.1-21.3
+          describesType:
+            Int
+        AstConstExpr(INT,8) @(1.11-1.11)
+          exprOfType:
+            Int
+  AstVarDecl(size) @(2.1-2.3)
+    AstTypeName(natural) @(2.12-2.18)
+      declaredAt: 22.1-22.3
+      describesType:
+        Int
+  AstFunDecl(set) @(4.1-4.3)
+    {Pars}
+      AstParDecl(a) @(4.9-4.9)
+        AstArrType @(4.13-4.13)
+          describesType:
+            Arr(8)
+              Int
+          AstAtomType(INT) @(4.16-4.18)
+            describesType:
+              Int
+          AstConstExpr(INT,8) @(4.14-4.14)
+            exprOfType:
+              Int
+      AstParDecl(counter) @(4.19-4.19)
+        AstAtomType(INT) @(4.31-4.33)
+          describesType:
+            Int
+      AstParDecl(value) @(4.34-4.34)
+        AstAtomType(INT) @(4.44-4.46)
+          describesType:
+            Int
+    AstPtrType @(4.51-4.51)
+      describesType:
+        Ptr
+          Arr(8)
+            Int
+      AstArrType @(4.52-4.52)
+        describesType:
+          Arr(8)
+            Int
+        AstAtomType(INT) @(4.55-4.57)
+          describesType:
+            Int
+        AstConstExpr(INT,8) @(4.53-4.53)
+          exprOfType:
+            Int
+    AstStmtExpr @(4.61-4.61)
+      exprOfType:
+        Ptr
+          Arr(8)
+            Int
+      {Stmts}
+          AstAssignStmt @(5.6-5.6)
+            stmtOfType:
+              Void
+            AstBinExpr(ARR) @(5.6-5.6)
+              exprOfType:
+                Int
+              AstNameExpr(a) @(5.5-5.5)
+                declaredAt: 4.9-4.9
+                exprOfType:
+                  Arr(8)
+                    Int
+              AstNameExpr(counter) @(5.7-5.13)
+                declaredAt: 4.19-4.19
+                exprOfType:
+                  Int
+            AstNameExpr(value) @(5.18-5.22)
+              declaredAt: 4.34-4.34
+              exprOfType:
+                Int
+          AstExprStmt @(6.5-6.5)
+            stmtOfType:
+              Ptr
+                Arr(8)
+                  Int
+            AstPreExpr(PTR) @(6.5-6.5)
+              exprOfType:
+                Ptr
+                  Arr(8)
+                    Int
+              AstNameExpr(a) @(6.6-6.6)
+                declaredAt: 4.9-4.9
+                exprOfType:
+                  Arr(8)
+                    Int
+  AstFunDecl(get) @(9.1-9.3)
+    {Pars}
+      AstParDecl(a) @(9.9-9.9)
+        AstArrType @(9.13-9.13)
+          describesType:
+            Arr(8)
+              Int
+          AstAtomType(INT) @(9.16-9.18)
+            describesType:
+              Int
+          AstConstExpr(INT,8) @(9.14-9.14)
+            exprOfType:
+              Int
+      AstParDecl(counter) @(9.19-9.19)
+        AstAtomType(INT) @(9.31-9.33)
+          describesType:
+            Int
+    AstAtomType(INT) @(9.38-9.40)
+      describesType:
+        Int
+    AstStmtExpr @(9.44-9.44)
+      exprOfType:
+        Int
+      {Stmts}
+          AstExprStmt @(10.6-10.6)
+            stmtOfType:
+              Int
+            AstBinExpr(ARR) @(10.6-10.6)
+              exprOfType:
+                Int
+              AstNameExpr(a) @(10.5-10.5)
+                declaredAt: 9.9-9.9
+                exprOfType:
+                  Arr(8)
+                    Int
+              AstNameExpr(counter) @(10.7-10.13)
+                declaredAt: 9.19-9.19
+                exprOfType:
+                  Int
+  AstFunDecl(main) @(13.1-13.3)
+    {Pars}
+    AstAtomType(VOID) @(13.14-13.17)
+      describesType:
+        Void
+    AstStmtExpr @(13.21-13.21)
+      exprOfType:
+        Void
+      {Stmts}
+          AstAssignStmt @(14.5-14.8)
+            stmtOfType:
+              Void
+            AstNameExpr(size) @(14.5-14.8)
+              declaredAt: 2.1-2.3
+              exprOfType:
+                Int
+            AstConstExpr(INT,0) @(14.12-14.12)
+              exprOfType:
+                Int
+          AstWhileStmt @(15.5-15.9)
+            stmtOfType:
+              Void
+            AstBinExpr(LTH) @(15.17-15.17)
+              exprOfType:
+                Int
+              AstNameExpr(size) @(15.12-15.15)
+                declaredAt: 2.1-2.3
+                exprOfType:
+                  Int
+              AstConstExpr(INT,8) @(15.19-15.19)
+                exprOfType:
+                  Int
+            AstExprStmt @(16.9-16.9)
+              stmtOfType:
+                Void
+              AstStmtExpr @(16.9-16.9)
+                exprOfType:
+                  Void
+                {Stmts}
+                    AstAssignStmt @(16.9-16.9)
+                      stmtOfType:
+                        Void
+                      AstNameExpr(a) @(16.9-16.9)
+                        declaredAt: 1.1-1.3
+                        exprOfType:
+                          Ptr
+                            Arr(8)
+                              Int
+                      AstCallExpr(set) @(16.13-16.15)
+                        declaredAt: 4.1-4.3
+                        exprOfType:
+                          Ptr
+                            Arr(8)
+                              Int
+                        {Args}
+                          AstPstExpr(PTR) @(16.18-16.18)
+                            exprOfType:
+                              Arr(8)
+                                Int
+                            AstNameExpr(a) @(16.17-16.17)
+                              declaredAt: 1.1-1.3
+                              exprOfType:
+                                Ptr
+                                  Arr(8)
+                                    Int
+                          AstNameExpr(size) @(16.21-16.24)
+                            declaredAt: 2.1-2.3
+                            exprOfType:
+                              Int
+                          AstNameExpr(size) @(16.27-16.30)
+                            declaredAt: 2.1-2.3
+                            exprOfType:
+                              Int
+                    AstAssignStmt @(17.9-17.12)
+                      stmtOfType:
+                        Void
+                      AstNameExpr(size) @(17.9-17.12)
+                        declaredAt: 2.1-2.3
+                        exprOfType:
+                          Int
+                      AstBinExpr(ADD) @(17.21-17.21)
+                        exprOfType:
+                          Int
+                        AstNameExpr(size) @(17.16-17.19)
+                          declaredAt: 2.1-2.3
+                          exprOfType:
+                            Int
+                        AstConstExpr(INT,1) @(17.23-17.23)
+                          exprOfType:
+                            Int
+  AstTypDecl(integer) @(21.1-21.3)
+    declaresType:
+      Name(integer)
+      Int
+    AstAtomType(INT) @(21.15-21.17)
+      describesType:
+        Int
+  AstTypDecl(natural) @(22.1-22.3)
+    declaresType:
+      Name(natural)
+      Int
+    AstTypeName(integer) @(22.15-22.21)
+      declaredAt: 21.1-21.3
+      describesType:
+        Int
+}#

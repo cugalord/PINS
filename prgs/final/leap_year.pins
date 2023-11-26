@@ -1,0 +1,40 @@
+fun isLeap(i : int) : int = ({
+    ret = -1;
+    if(i % 400 == 0) then
+            ret=1;
+    else
+        if(i % 100 == 0) then
+            ret=0;
+        end;
+    end;
+    if(ret != -1 & i % 4 == 0) then
+        ret=1;
+    end;
+    ret;
+}where
+    var ret : int;
+);
+
+
+fun endl() : char = (10 : char);
+var i : int;
+fun main(): void = {
+    putChar('E'); putChar('n'); putChar('t'); putChar('e'); putChar('r'); putChar(' '); putChar('a'); putChar(' '); putChar('y'); putChar('e'); putChar('a'); putChar('r'); putChar(':'); putChar(' '); putChar(endl());
+    i = getInt();
+    endl();
+
+    if(isLeap(i) == 1) then
+        putChar('Y');putChar('e');putChar('s');
+    else
+        putChar('N');putChar('o');
+    end;
+    putChar(endl());
+};
+
+
+#{ Forward declarations <- Author: Otzi}#
+fun putChar(c : char) : void = none;
+fun getChar() : char = (0 : char);
+fun putInt(i : int) : void = none;
+fun getInt() : int = 0;
+fun randInt(min : int, max : int) : int = 0;

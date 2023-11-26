@@ -1,0 +1,140 @@
+fun a(i : int) : int = {
+    i = 0;
+    (
+        i
+        where
+            var x : [10]int;
+            fun b(j : int) : int = {
+                j = 0;
+                (
+                    j
+                    where
+                        var y : [10]int;
+                        fun c(k : int) : int = {
+                            k;
+                        };
+                );
+            };
+    );
+};
+
+#{Should output: (locations might vary)
+  AstFunDecl(a) @(1.1-1.3)
+      Frame(_a,96=16+80+0,T4,T5,1)
+    {Pars}
+      AstParDecl(i) @(1.7-1.7)
+          RelAccess(8,8,2)
+        AstAtomType(INT) @(1.11-1.13)
+          describesType:
+            Int
+    AstAtomType(INT) @(1.18-1.20)
+      describesType:
+        Int
+    AstStmtExpr @(1.24-1.24)
+      exprOfType:
+        Int
+      {Stmts}
+          AstAssignStmt @(2.5-2.5)
+            stmtOfType:
+              Void
+            AstNameExpr(i) @(2.5-2.5)
+              declaredAt: 1.7-1.7
+              exprOfType:
+                Int
+            AstConstExpr(INT,0) @(2.9-2.9)
+              exprOfType:
+                Int
+          AstExprStmt @(5.9-5.13)
+            stmtOfType:
+              Int
+            AstWhereExpr @(5.9-5.13)
+              exprOfType:
+                Int
+              {Decls}
+                  AstVarDecl(x) @(6.13-6.15)
+                      RelAccess(80,-80,2)
+                    AstArrType @(6.21-6.21)
+                      describesType:
+                        Arr(10)
+                          Int
+                      AstAtomType(INT) @(6.25-6.27)
+                        describesType:
+                          Int
+                      AstConstExpr(INT,10) @(6.22-6.23)
+                        exprOfType:
+                          Int
+                  AstFunDecl(b) @(7.13-7.15)
+                      Frame(L1,96=16+80+0,T2,T3,2)
+                    {Pars}
+                      AstParDecl(j) @(7.19-7.19)
+                          RelAccess(8,8,3)
+                        AstAtomType(INT) @(7.23-7.25)
+                          describesType:
+                            Int
+                    AstAtomType(INT) @(7.30-7.32)
+                      describesType:
+                        Int
+                    AstStmtExpr @(7.36-7.36)
+                      exprOfType:
+                        Int
+                      {Stmts}
+                          AstAssignStmt @(8.17-8.17)
+                            stmtOfType:
+                              Void
+                            AstNameExpr(j) @(8.17-8.17)
+                              declaredAt: 7.19-7.19
+                              exprOfType:
+                                Int
+                            AstConstExpr(INT,0) @(8.21-8.21)
+                              exprOfType:
+                                Int
+                          AstExprStmt @(11.21-11.25)
+                            stmtOfType:
+                              Int
+                            AstWhereExpr @(11.21-11.25)
+                              exprOfType:
+                                Int
+                              {Decls}
+                                  AstVarDecl(y) @(12.25-12.27)
+                                      RelAccess(80,-80,3)
+                                    AstArrType @(12.33-12.33)
+                                      describesType:
+                                        Arr(10)
+                                          Int
+                                      AstAtomType(INT) @(12.37-12.39)
+                                        describesType:
+                                          Int
+                                      AstConstExpr(INT,10) @(12.34-12.35)
+                                        exprOfType:
+                                          Int
+                                  AstFunDecl(c) @(13.25-13.27)
+                                      Frame(L0,16=16+0+0,T0,T1,3)
+                                    {Pars}
+                                      AstParDecl(k) @(13.31-13.31)
+                                          RelAccess(8,8,4)
+                                        AstAtomType(INT) @(13.35-13.37)
+                                          describesType:
+                                            Int
+                                    AstAtomType(INT) @(13.42-13.44)
+                                      describesType:
+                                        Int
+                                    AstStmtExpr @(13.48-13.48)
+                                      exprOfType:
+                                        Int
+                                      {Stmts}
+                                          AstExprStmt @(14.29-14.29)
+                                            stmtOfType:
+                                              Int
+                                            AstNameExpr(k) @(14.29-14.29)
+                                              declaredAt: 13.31-13.31
+                                              exprOfType:
+                                                Int
+                              AstNameExpr(j) @(10.21-10.21)
+                                declaredAt: 7.19-7.19
+                                exprOfType:
+                                  Int
+              AstNameExpr(i) @(4.9-4.9)
+                declaredAt: 1.7-1.7
+                exprOfType:
+                  Int
+}#

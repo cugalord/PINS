@@ -1,0 +1,5 @@
+fun a() : void = (a != 3 | b <= -2 & c + a[1] > ^g & d == +2);
+
+typ a = char; #{Some comment}# var b : int;
+
+fun d() : void = 3 * 2 * 1 * 0 * -1 * 66 + 22 - !32 / 8 % 2[2];

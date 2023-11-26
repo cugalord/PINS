@@ -1,0 +1,7 @@
+fun ptrTest(a : ^int, b : ^char) : int = {
+    a == b;
+};
+
+#{Should output: (locations might vary)
+:-( [2.10-2.10] Semantic error: Type mismatch: '^int', '^char'.
+}#

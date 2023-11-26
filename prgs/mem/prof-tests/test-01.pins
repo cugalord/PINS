@@ -1,0 +1,37 @@
+var j:int;
+fun main(i:int):int = 1+2*i;
+
+#{Should output: (locations might vary)
+  AstVarDecl(j) @(1.1-1.3)
+      AbsAccess(8,_j)
+    AstAtomType(INT) @(1.7-1.9)
+      describesType:
+        Int
+  AstFunDecl(main) @(2.1-2.3)
+      Frame(_main,16=16+0+0,T0,T1,1)
+    {Pars}
+      AstParDecl(i) @(2.10-2.10)
+          RelAccess(8,8,2)
+        AstAtomType(INT) @(2.12-2.14)
+          describesType:
+            Int
+    AstAtomType(INT) @(2.17-2.19)
+      describesType:
+        Int
+    AstBinExpr(ADD) @(2.24-2.24)
+      exprOfType:
+        Int
+      AstConstExpr(INT,1) @(2.23-2.23)
+        exprOfType:
+          Int
+      AstBinExpr(MUL) @(2.26-2.26)
+        exprOfType:
+          Int
+        AstConstExpr(INT,2) @(2.25-2.25)
+          exprOfType:
+            Int
+        AstNameExpr(i) @(2.27-2.27)
+          declaredAt: 2.10-2.10
+          exprOfType:
+            Int
+}#

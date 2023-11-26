@@ -1,0 +1,17 @@
+var count : int;
+var array : [10]char;
+
+var output : int;
+
+fun main() : void = {
+    count = 0;
+
+    while (count < 10) do
+        set(array, count);
+        count = count + 1;
+    end;
+};
+
+fun set(arr : ^[10]char, cnt : int) : void = {
+    arr[cnt] = (cnt + 48 : char);
+};

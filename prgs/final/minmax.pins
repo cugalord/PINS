@@ -1,0 +1,68 @@
+fun stats(array : ^[50]int, size : int) : void=({
+    i = 1;
+    min = array^[0];
+    max = array^[0];
+    sum = 0;
+
+    while(i < size) do
+        if(array^[i] < min) then
+            min = array^[i];
+        end;
+        if(array^[i] > max) then
+            max = array^[i];
+        end;
+        sum = sum + array^[i];
+        i = i + 1;
+    end;
+
+    putChar('M');putChar('I');putChar('N');putChar(':');putChar(' ');putInt(min);putChar(endl());
+    putChar('M');putChar('A');putChar('X');putChar(':');putChar(' ');putInt(max);putChar(endl());
+    putChar('S');putChar('U');putChar('M');putChar(':');putChar(' ');putInt(sum);putChar(endl());
+    putChar('A');putChar('V');putChar('G');putChar(':');putChar(' ');putInt(sum/size);putChar(endl());
+
+}
+where
+    var i : int;
+    var min : int;
+    var max : int;
+    var sum : int;
+);
+
+
+fun swap(array : ^[50]int, i : int, j : int) : void = ({
+    tmp = array^[i];
+    array^[i] = array^[j];
+    array^[j] = tmp;
+}
+where
+    var tmp : int;
+);
+
+#{ Fills the array with random numbers between 0 and 100. }#
+fun fill(array : ^[50]int, size : int) : void = ({
+    i = 0;
+    while (i < size) do
+        array^[i] = randInt(0, 100);
+        i = i + 1;
+    end;
+}
+where
+    var i : int;
+);
+
+fun endl() : char = (10 : char);
+
+var array : [50]int;
+
+fun main(): void = {
+    fill(^array, 50);
+    stats(^array, 50);
+};
+
+
+#{ Forward declarations <- Author: Otzi}#
+fun putChar(c : char) : void = none;
+fun getChar() : char = (0 : char);
+fun putInt(i : int) : void = none;
+fun getInt() : int = 0;
+fun randInt(min : int, max : int) : int = 0;

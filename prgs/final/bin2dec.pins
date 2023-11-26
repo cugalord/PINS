@@ -1,0 +1,50 @@
+fun todec(n : int) : int = ({
+    decimal = 0;
+    i = 0;
+    while(n != 0) do
+        rem = n % 10;
+        n = n / 10;
+        decimal = decimal + rem*pow(2, i);
+        i=i+1;
+    end;
+    decimal;
+}where
+    var ret : int;
+    var decimal : int;
+    var i : int;
+    var rem : int;
+);
+
+fun pow(a : int, b : int) : int = ({
+    ret = 1;
+    i = 0;
+    while(i != b) do
+        ret = ret * a;
+        i=i+1;
+    end;
+    ret;
+}where
+    var ret : int;
+    var i : int;
+);
+
+fun endl() : char = (10 : char);
+var i : int;
+fun main(): void = {
+    putChar('E');putChar('n');putChar('t');putChar('e');putChar('r');putChar(' ');putChar('a');putChar(' ');putChar('b');putChar('i');putChar('n');putChar('a');putChar('r');putChar('y');putChar(' ');putChar('n');putChar('u');putChar('m');putChar('b');putChar('e');putChar('r');putChar(':');putChar(' ');
+    i = getInt();
+    endl();
+    i = todec(i);
+
+    putChar('D');putChar('e');putChar('c');putChar('i');putChar('m');putChar('a');putChar('l');putChar(':');putChar(' ');
+    putInt(i);
+    putChar(endl());
+};
+
+
+#{ Forward declarations <- Author: Otzi}#
+fun putChar(c : char) : void = none;
+fun getChar() : char = (0 : char);
+fun putInt(i : int) : void = none;
+fun getInt() : int = 0;
+fun randInt(min : int, max : int) : int = 0;

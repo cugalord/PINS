@@ -1,0 +1,9 @@
+var arr : [2]int;
+
+fun a() : [2]int = {
+    arr;
+};
+
+#{Should output: (locations might vary)
+:-( [3.11-3.11] Semantic error: Function return type cannot be of type '[2]int'.
+}#

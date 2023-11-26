@@ -1,0 +1,65 @@
+typ number=int;
+var a:number;
+var pa:^int;
+var pb:^number;
+fun main(i:int):int=(pa^==pb^);
+
+#{Should output: (locations might vary)
+  AstTypDecl(number) @(1.1-1.3)
+    declaresType:
+      Name(number)
+      Int
+    AstAtomType(INT) @(1.12-1.14)
+      describesType:
+        Int
+  AstVarDecl(a) @(2.1-2.3)
+    AstTypeName(number) @(2.7-2.12)
+      declaredAt: 1.1-1.3
+      describesType:
+        Name(number)
+  AstVarDecl(pa) @(3.1-3.3)
+    AstPtrType @(3.8-3.8)
+      describesType:
+        Ptr
+          Int
+      AstAtomType(INT) @(3.9-3.11)
+        describesType:
+          Int
+  AstVarDecl(pb) @(4.1-4.3)
+    AstPtrType @(4.8-4.8)
+      describesType:
+        Ptr
+          Name(number)
+      AstTypeName(number) @(4.9-4.14)
+        declaredAt: 1.1-1.3
+        describesType:
+          Name(number)
+  AstFunDecl(main) @(5.1-5.3)
+    {Pars}
+      AstParDecl(i) @(5.10-5.10)
+        AstAtomType(INT) @(5.12-5.14)
+          describesType:
+            Int
+    AstAtomType(INT) @(5.17-5.19)
+      describesType:
+        Int
+    AstBinExpr(EQU) @(5.25-5.26)
+      exprOfType:
+        Int
+      AstPstExpr(PTR) @(5.24-5.24)
+        exprOfType:
+          Int
+        AstNameExpr(pa) @(5.22-5.23)
+          declaredAt: 3.1-3.3
+          exprOfType:
+            Ptr
+              Int
+      AstPstExpr(PTR) @(5.29-5.29)
+        exprOfType:
+          Name(number)
+        AstNameExpr(pb) @(5.27-5.28)
+          declaredAt: 4.1-4.3
+          exprOfType:
+            Ptr
+              Name(number)
+}#

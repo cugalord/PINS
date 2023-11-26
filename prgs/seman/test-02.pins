@@ -1,0 +1,68 @@
+typ integer   = int;
+typ character = char;
+
+typ string = [10]char;
+typ byte   = [8]integer;
+
+var text : string;
+var binary : byte;
+
+#{Should output: (locations might vary)
+  AstTypDecl(integer) @(1.1-1.3)
+    declaresType:
+      Name(integer)
+      Int
+    AstAtomType(INT) @(1.17-1.19)
+      describesType:
+        Int
+  AstTypDecl(character) @(2.1-2.3)
+    declaresType:
+      Name(character)
+      Char
+    AstAtomType(CHAR) @(2.17-2.20)
+      describesType:
+        Char
+  AstTypDecl(string) @(4.1-4.3)
+    declaresType:
+      Name(string)
+      Arr(10)
+        Char
+    AstArrType @(4.14-4.14)
+      describesType:
+        Arr(10)
+          Char
+      AstAtomType(CHAR) @(4.18-4.21)
+        describesType:
+          Char
+      AstConstExpr(INT,10) @(4.15-4.16)
+        exprOfType:
+          Int
+  AstTypDecl(byte) @(5.1-5.3)
+    declaresType:
+      Name(byte)
+      Arr(8)
+        Int
+    AstArrType @(5.14-5.14)
+      describesType:
+        Arr(8)
+          Int
+      AstTypeName(integer) @(5.17-5.23)
+        declaredAt: 1.1-1.3
+        describesType:
+          Int
+      AstConstExpr(INT,8) @(5.15-5.15)
+        exprOfType:
+          Int
+  AstVarDecl(text) @(7.1-7.3)
+    AstTypeName(string) @(7.12-7.17)
+      declaredAt: 4.1-4.3
+      describesType:
+        Arr(10)
+          Char
+  AstVarDecl(binary) @(8.1-8.3)
+    AstTypeName(byte) @(8.14-8.17)
+      declaredAt: 5.1-5.3
+      describesType:
+        Arr(8)
+          Int
+}#

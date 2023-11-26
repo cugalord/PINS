@@ -1,0 +1,109 @@
+# program
+prg -> decls .
+decls -> decl declsRst .
+declsRst -> .
+declsRst -> decls .
+
+# declarations
+decl -> typ identifier = type ; .
+decl -> var identifier : type ; .
+decl -> fun identifier ( funParams ) : type = expr ; . #typeExpr.
+funParams -> .
+funParams -> identifier : type funParamsRst .
+funParamsRst -> .
+funParamsRst -> , identifier : type funParamsRst .
+
+# types
+type -> void .
+type -> char .
+type -> int .
+type -> identifier .
+type -> [ expr ] type .
+type -> ^ type .
+type -> ( type ) .
+
+# statements
+stmts -> stmt stmtsRst .
+stmtsRst -> ; stmts' .
+stmts' -> .
+stmts' -> stmts .
+stmt -> expr exprAsgn .
+exprAsgn -> .
+exprAsgn -> = expr . #; .
+stmt -> if expr then stmts stmtElse end . #; .
+stmtElse -> .
+stmtElse -> else stmts .
+stmt -> where expr do stmts end . #; . 
+
+# expressions
+
+# allocation expressions
+expr -> exprAlloc. 
+exprAlloc -> new expr.
+exprAlloc -> del expr.
+
+# compound expression
+expr -> { stmts } .
+
+# infix, prefix, postfix expressions
+# disjunction and conjunction
+expr -> exprDis .
+exprDis -> exprCon exprDisRst .
+#exprDisRst -> ? exprCon exprDisRst . # use in testing on grammophone, as | is taken
+exprDisRst -> | exprCon exprDisRst .
+exprDisRst -> .
+exprCon -> exprRel exprConRst .
+exprConRst -> & exprRel exprConRst .
+exprConRst -> .
+
+# relational expressions
+exprRel -> exprAdd exprRelRst .
+exprRelRst -> == exprAdd exprRelRst .
+exprRelRst -> != exprAdd exprRelRst .
+exprRelRst -> >= exprAdd exprRelRst .
+exprRelRst -> <= exprAdd exprRelRst .
+exprRelRst -> < exprAdd exprRelRst .
+exprRelRst -> > exprAdd exprRelRst .
+exprRelRst -> .
+
+# additive expressions
+exprAdd -> exprMul exprAddRst .
+exprAddRst -> + exprMul exprAddRst .
+exprAddRst -> - exprMul exprAddRst .
+exprAddRst -> .
+
+# multiplicative expressions
+exprMul -> exprPref exprMulRst .
+exprMulRst -> * exprPref exprMulRst .
+exprMulRst -> / exprPref exprMulRst .
+exprMulRst -> % exprPref exprMulRst .
+exprMulRst -> .
+
+# prefix expressions
+exprPref -> ! exprPref .
+exprPref -> + exprPref .
+exprPref -> - exprPref .
+exprPref -> ^ exprPref .
+exprPref -> exprPost .
+
+# postfix expressions
+exprPost -> exprAtom exprPostRst .
+exprPostRst -> [ expr ] .
+exprPostRst -> ^ .
+exprPostRst -> .
+
+# atomic expressions
+exprAtom -> const .
+exprAtom -> identifier identifierRst.
+# enclosed, typecast or where expression
+exprAtom -> ( expr exprRst ) .
+identifierRst -> .
+identifierRst -> ( identParams ) .
+identParams -> expr identParamsRst .
+identParamsRst -> .
+identParamsRst -> , expr identParamsRst .
+exprRst -> .
+exprRst -> typecast .
+exprRst -> exprWhere .
+typecast -> : type .
+exprWhere -> where decls .

@@ -1,0 +1,95 @@
+var j:int;
+fun main(i:int):int =
+		( n+j*i+f(i,j)
+		where
+		var n:int;
+		fun f(i:int,k:int):int = i+n; );
+
+#{Should output: (locations might vary)
+  AstVarDecl(j) @(1.1-1.3)
+      AbsAccess(8,_j)
+    AstAtomType(INT) @(1.7-1.9)
+      describesType:
+        Int
+  AstFunDecl(main) @(2.1-2.3)
+      Frame(_main,48=16+8+24,T2,T3,1)
+    {Pars}
+      AstParDecl(i) @(2.10-2.10)
+          RelAccess(8,8,2)
+        AstAtomType(INT) @(2.12-2.14)
+          describesType:
+            Int
+    AstAtomType(INT) @(2.17-2.19)
+      describesType:
+        Int
+    AstWhereExpr @(4.17-4.21)
+      exprOfType:
+        Int
+      {Decls}
+          AstVarDecl(n) @(5.17-5.19)
+              RelAccess(8,-8,2)
+            AstAtomType(INT) @(5.23-5.25)
+              describesType:
+                Int
+          AstFunDecl(f) @(6.17-6.19)
+              Frame(L0,16=16+0+0,T0,T1,2)
+            {Pars}
+              AstParDecl(i) @(6.23-6.23)
+                  RelAccess(8,8,3)
+                AstAtomType(INT) @(6.25-6.27)
+                  describesType:
+                    Int
+              AstParDecl(k) @(6.28-6.28)
+                  RelAccess(8,16,3)
+                AstAtomType(INT) @(6.31-6.33)
+                  describesType:
+                    Int
+            AstAtomType(INT) @(6.36-6.38)
+              describesType:
+                Int
+            AstBinExpr(ADD) @(6.43-6.43)
+              exprOfType:
+                Int
+              AstNameExpr(i) @(6.42-6.42)
+                declaredAt: 6.23-6.23
+                exprOfType:
+                  Int
+              AstNameExpr(n) @(6.44-6.44)
+                declaredAt: 5.17-5.19
+                exprOfType:
+                  Int
+      AstBinExpr(ADD) @(3.20-3.20)
+        exprOfType:
+          Int
+        AstNameExpr(n) @(3.19-3.19)
+          declaredAt: 5.17-5.19
+          exprOfType:
+            Int
+        AstBinExpr(ADD) @(3.24-3.24)
+          exprOfType:
+            Int
+          AstBinExpr(MUL) @(3.22-3.22)
+            exprOfType:
+              Int
+            AstNameExpr(j) @(3.21-3.21)
+              declaredAt: 1.1-1.3
+              exprOfType:
+                Int
+            AstNameExpr(i) @(3.23-3.23)
+              declaredAt: 2.10-2.10
+              exprOfType:
+                Int
+          AstCallExpr(f) @(3.25-3.25)
+            declaredAt: 6.17-6.19
+            exprOfType:
+              Int
+            {Args}
+              AstNameExpr(i) @(3.27-3.27)
+                declaredAt: 2.10-2.10
+                exprOfType:
+                  Int
+              AstNameExpr(j) @(3.29-3.29)
+                declaredAt: 1.1-1.3
+                exprOfType:
+                  Int
+}#

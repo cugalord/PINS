@@ -1,0 +1,780 @@
+typ integer = int;
+var b : [2]integer;
+
+var result : char;
+
+fun c(g : ^[2]int) : char = {
+    result = '/';
+
+    if ((g^)[0] > (g^)[1]) then
+        result = '+';
+    else
+        if ((g^)[0] < (g^)[1]) then
+            result = '-';
+        else
+            result = '0';
+        end;
+    end;
+
+    result;
+};
+
+#{Should output: (locations might vary)
+  AstTypDecl(integer) @(1.1-1.3)
+    declaresType:
+      Name(integer)
+      Int
+    AstAtomType(INT) @(1.15-1.17)
+      describesType:
+        Int
+  AstVarDecl(b) @(2.1-2.3)
+      AbsAccess(16,_b)
+    AstArrType @(2.9-2.9)
+      describesType:
+        Arr(2)
+          Int
+      AstTypeName(integer) @(2.12-2.18)
+        declaredAt: 1.1-1.3
+        describesType:
+          Int
+      AstConstExpr(INT,2) @(2.10-2.10)
+        exprOfType:
+          Int
+  AstVarDecl(result) @(4.1-4.3)
+      AbsAccess(8,_result)
+    AstAtomType(CHAR) @(4.14-4.17)
+      describesType:
+        Char
+  AstFunDecl(c) @(6.1-6.3)
+      Frame(_c,16=16+0+0,T0,T1,1)
+    {Pars}
+      AstParDecl(g) @(6.7-6.7)
+          RelAccess(8,8,2)
+        AstPtrType @(6.11-6.11)
+          describesType:
+            Ptr
+              Arr(2)
+                Int
+          AstArrType @(6.12-6.12)
+            describesType:
+              Arr(2)
+                Int
+            AstAtomType(INT) @(6.15-6.17)
+              describesType:
+                Int
+            AstConstExpr(INT,2) @(6.13-6.13)
+              exprOfType:
+                Int
+    AstAtomType(CHAR) @(6.22-6.25)
+      describesType:
+        Char
+    AstStmtExpr @(6.29-6.29)
+      exprOfType:
+        Char
+      exprImc:
+        SEXPR
+          STMTS
+            MOVE
+              MEM
+                NAME(_result)
+              CONST(47)
+            STMTS
+              CJUMP(L0,L1)
+                BINOP
+                  MEM
+                    BINOP
+                      MEM
+                        MEM
+                          BINOP
+                            TEMP(T0)
+                            CONST(8)
+                      BINOP
+                        CONST(0)
+                        CONST(8)
+                  MEM
+                    BINOP
+                      MEM
+                        MEM
+                          BINOP
+                            TEMP(T0)
+                            CONST(8)
+                      BINOP
+                        CONST(1)
+                        CONST(8)
+              LABEL(L0)
+              ESTMT
+                SEXPR
+                  STMTS
+                    MOVE
+                      MEM
+                        NAME(_result)
+                      CONST(43)
+                  CONST(0)
+              JUMP(L2)
+              LABEL(L1)
+              ESTMT
+                SEXPR
+                  STMTS
+                    STMTS
+                      CJUMP(L3,L4)
+                        BINOP
+                          MEM
+                            BINOP
+                              MEM
+                                MEM
+                                  BINOP
+                                    TEMP(T0)
+                                    CONST(8)
+                              BINOP
+                                CONST(0)
+                                CONST(8)
+                          MEM
+                            BINOP
+                              MEM
+                                MEM
+                                  BINOP
+                                    TEMP(T0)
+                                    CONST(8)
+                              BINOP
+                                CONST(1)
+                                CONST(8)
+                      LABEL(L3)
+                      ESTMT
+                        SEXPR
+                          STMTS
+                            MOVE
+                              MEM
+                                NAME(_result)
+                              CONST(45)
+                          CONST(0)
+                      JUMP(L5)
+                      LABEL(L4)
+                      ESTMT
+                        SEXPR
+                          STMTS
+                            MOVE
+                              MEM
+                                NAME(_result)
+                              CONST(48)
+                          CONST(0)
+                      LABEL(L5)
+                  CONST(0)
+              LABEL(L2)
+            ESTMT
+              MEM
+                NAME(_result)
+          MEM
+            NAME(_result)
+      {Stmts}
+          AstAssignStmt @(7.5-7.10)
+            stmtOfType:
+              Void
+            stmtImc:
+              MOVE
+                MEM
+                  NAME(_result)
+                CONST(47)
+            AstNameExpr(result) @(7.5-7.10)
+              declaredAt: 4.1-4.3
+              exprOfType:
+                Char
+              exprImc:
+                MEM
+                  NAME(_result)
+            AstConstExpr(CHAR,'/') @(7.14-7.16)
+              exprOfType:
+                Char
+              exprImc:
+                CONST(47)
+          AstIfStmt @(9.5-9.6)
+            stmtOfType:
+              Void
+            stmtImc:
+              STMTS
+                CJUMP(L0,L1)
+                  BINOP
+                    MEM
+                      BINOP
+                        MEM
+                          MEM
+                            BINOP
+                              TEMP(T0)
+                              CONST(8)
+                        BINOP
+                          CONST(0)
+                          CONST(8)
+                    MEM
+                      BINOP
+                        MEM
+                          MEM
+                            BINOP
+                              TEMP(T0)
+                              CONST(8)
+                        BINOP
+                          CONST(1)
+                          CONST(8)
+                LABEL(L0)
+                ESTMT
+                  SEXPR
+                    STMTS
+                      MOVE
+                        MEM
+                          NAME(_result)
+                        CONST(43)
+                    CONST(0)
+                JUMP(L2)
+                LABEL(L1)
+                ESTMT
+                  SEXPR
+                    STMTS
+                      STMTS
+                        CJUMP(L3,L4)
+                          BINOP
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(0)
+                                  CONST(8)
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(1)
+                                  CONST(8)
+                        LABEL(L3)
+                        ESTMT
+                          SEXPR
+                            STMTS
+                              MOVE
+                                MEM
+                                  NAME(_result)
+                                CONST(45)
+                            CONST(0)
+                        JUMP(L5)
+                        LABEL(L4)
+                        ESTMT
+                          SEXPR
+                            STMTS
+                              MOVE
+                                MEM
+                                  NAME(_result)
+                                CONST(48)
+                            CONST(0)
+                        LABEL(L5)
+                    CONST(0)
+                LABEL(L2)
+            AstBinExpr(GTH) @(9.17-9.17)
+              exprOfType:
+                Int
+              exprImc:
+                BINOP
+                  MEM
+                    BINOP
+                      MEM
+                        MEM
+                          BINOP
+                            TEMP(T0)
+                            CONST(8)
+                      BINOP
+                        CONST(0)
+                        CONST(8)
+                  MEM
+                    BINOP
+                      MEM
+                        MEM
+                          BINOP
+                            TEMP(T0)
+                            CONST(8)
+                      BINOP
+                        CONST(1)
+                        CONST(8)
+              AstBinExpr(ARR) @(9.13-9.13)
+                exprOfType:
+                  Int
+                exprImc:
+                  MEM
+                    BINOP
+                      MEM
+                        MEM
+                          BINOP
+                            TEMP(T0)
+                            CONST(8)
+                      BINOP
+                        CONST(0)
+                        CONST(8)
+                AstPstExpr(PTR) @(9.11-9.11)
+                  exprOfType:
+                    Arr(2)
+                      Int
+                  exprImc:
+                    MEM
+                      MEM
+                        BINOP
+                          TEMP(T0)
+                          CONST(8)
+                  AstNameExpr(g) @(9.10-9.10)
+                    declaredAt: 6.7-6.7
+                    exprOfType:
+                      Ptr
+                        Arr(2)
+                          Int
+                    exprImc:
+                      MEM
+                        BINOP
+                          TEMP(T0)
+                          CONST(8)
+                AstConstExpr(INT,0) @(9.14-9.14)
+                  exprOfType:
+                    Int
+                  exprImc:
+                    CONST(0)
+              AstBinExpr(ARR) @(9.23-9.23)
+                exprOfType:
+                  Int
+                exprImc:
+                  MEM
+                    BINOP
+                      MEM
+                        MEM
+                          BINOP
+                            TEMP(T0)
+                            CONST(8)
+                      BINOP
+                        CONST(1)
+                        CONST(8)
+                AstPstExpr(PTR) @(9.21-9.21)
+                  exprOfType:
+                    Arr(2)
+                      Int
+                  exprImc:
+                    MEM
+                      MEM
+                        BINOP
+                          TEMP(T0)
+                          CONST(8)
+                  AstNameExpr(g) @(9.20-9.20)
+                    declaredAt: 6.7-6.7
+                    exprOfType:
+                      Ptr
+                        Arr(2)
+                          Int
+                    exprImc:
+                      MEM
+                        BINOP
+                          TEMP(T0)
+                          CONST(8)
+                AstConstExpr(INT,1) @(9.24-9.24)
+                  exprOfType:
+                    Int
+                  exprImc:
+                    CONST(1)
+            AstExprStmt @(10.9-10.14)
+              stmtOfType:
+                Void
+              stmtImc:
+                ESTMT
+                  SEXPR
+                    STMTS
+                      MOVE
+                        MEM
+                          NAME(_result)
+                        CONST(43)
+                    CONST(0)
+              AstStmtExpr @(10.9-10.14)
+                exprOfType:
+                  Void
+                exprImc:
+                  SEXPR
+                    STMTS
+                      MOVE
+                        MEM
+                          NAME(_result)
+                        CONST(43)
+                    CONST(0)
+                {Stmts}
+                    AstAssignStmt @(10.9-10.14)
+                      stmtOfType:
+                        Void
+                      stmtImc:
+                        MOVE
+                          MEM
+                            NAME(_result)
+                          CONST(43)
+                      AstNameExpr(result) @(10.9-10.14)
+                        declaredAt: 4.1-4.3
+                        exprOfType:
+                          Char
+                        exprImc:
+                          MEM
+                            NAME(_result)
+                      AstConstExpr(CHAR,'+') @(10.18-10.20)
+                        exprOfType:
+                          Char
+                        exprImc:
+                          CONST(43)
+            AstExprStmt @(12.9-12.10)
+              stmtOfType:
+                Void
+              stmtImc:
+                ESTMT
+                  SEXPR
+                    STMTS
+                      STMTS
+                        CJUMP(L3,L4)
+                          BINOP
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(0)
+                                  CONST(8)
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(1)
+                                  CONST(8)
+                        LABEL(L3)
+                        ESTMT
+                          SEXPR
+                            STMTS
+                              MOVE
+                                MEM
+                                  NAME(_result)
+                                CONST(45)
+                            CONST(0)
+                        JUMP(L5)
+                        LABEL(L4)
+                        ESTMT
+                          SEXPR
+                            STMTS
+                              MOVE
+                                MEM
+                                  NAME(_result)
+                                CONST(48)
+                            CONST(0)
+                        LABEL(L5)
+                    CONST(0)
+              AstStmtExpr @(12.9-12.10)
+                exprOfType:
+                  Void
+                exprImc:
+                  SEXPR
+                    STMTS
+                      STMTS
+                        CJUMP(L3,L4)
+                          BINOP
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(0)
+                                  CONST(8)
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(1)
+                                  CONST(8)
+                        LABEL(L3)
+                        ESTMT
+                          SEXPR
+                            STMTS
+                              MOVE
+                                MEM
+                                  NAME(_result)
+                                CONST(45)
+                            CONST(0)
+                        JUMP(L5)
+                        LABEL(L4)
+                        ESTMT
+                          SEXPR
+                            STMTS
+                              MOVE
+                                MEM
+                                  NAME(_result)
+                                CONST(48)
+                            CONST(0)
+                        LABEL(L5)
+                    CONST(0)
+                {Stmts}
+                    AstIfStmt @(12.9-12.10)
+                      stmtOfType:
+                        Void
+                      stmtImc:
+                        STMTS
+                          CJUMP(L3,L4)
+                            BINOP
+                              MEM
+                                BINOP
+                                  MEM
+                                    MEM
+                                      BINOP
+                                        TEMP(T0)
+                                        CONST(8)
+                                  BINOP
+                                    CONST(0)
+                                    CONST(8)
+                              MEM
+                                BINOP
+                                  MEM
+                                    MEM
+                                      BINOP
+                                        TEMP(T0)
+                                        CONST(8)
+                                  BINOP
+                                    CONST(1)
+                                    CONST(8)
+                          LABEL(L3)
+                          ESTMT
+                            SEXPR
+                              STMTS
+                                MOVE
+                                  MEM
+                                    NAME(_result)
+                                  CONST(45)
+                              CONST(0)
+                          JUMP(L5)
+                          LABEL(L4)
+                          ESTMT
+                            SEXPR
+                              STMTS
+                                MOVE
+                                  MEM
+                                    NAME(_result)
+                                  CONST(48)
+                              CONST(0)
+                          LABEL(L5)
+                      AstBinExpr(LTH) @(12.21-12.21)
+                        exprOfType:
+                          Int
+                        exprImc:
+                          BINOP
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(0)
+                                  CONST(8)
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(1)
+                                  CONST(8)
+                        AstBinExpr(ARR) @(12.17-12.17)
+                          exprOfType:
+                            Int
+                          exprImc:
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(0)
+                                  CONST(8)
+                          AstPstExpr(PTR) @(12.15-12.15)
+                            exprOfType:
+                              Arr(2)
+                                Int
+                            exprImc:
+                              MEM
+                                MEM
+                                  BINOP
+                                    TEMP(T0)
+                                    CONST(8)
+                            AstNameExpr(g) @(12.14-12.14)
+                              declaredAt: 6.7-6.7
+                              exprOfType:
+                                Ptr
+                                  Arr(2)
+                                    Int
+                              exprImc:
+                                MEM
+                                  BINOP
+                                    TEMP(T0)
+                                    CONST(8)
+                          AstConstExpr(INT,0) @(12.18-12.18)
+                            exprOfType:
+                              Int
+                            exprImc:
+                              CONST(0)
+                        AstBinExpr(ARR) @(12.27-12.27)
+                          exprOfType:
+                            Int
+                          exprImc:
+                            MEM
+                              BINOP
+                                MEM
+                                  MEM
+                                    BINOP
+                                      TEMP(T0)
+                                      CONST(8)
+                                BINOP
+                                  CONST(1)
+                                  CONST(8)
+                          AstPstExpr(PTR) @(12.25-12.25)
+                            exprOfType:
+                              Arr(2)
+                                Int
+                            exprImc:
+                              MEM
+                                MEM
+                                  BINOP
+                                    TEMP(T0)
+                                    CONST(8)
+                            AstNameExpr(g) @(12.24-12.24)
+                              declaredAt: 6.7-6.7
+                              exprOfType:
+                                Ptr
+                                  Arr(2)
+                                    Int
+                              exprImc:
+                                MEM
+                                  BINOP
+                                    TEMP(T0)
+                                    CONST(8)
+                          AstConstExpr(INT,1) @(12.28-12.28)
+                            exprOfType:
+                              Int
+                            exprImc:
+                              CONST(1)
+                      AstExprStmt @(13.13-13.18)
+                        stmtOfType:
+                          Void
+                        stmtImc:
+                          ESTMT
+                            SEXPR
+                              STMTS
+                                MOVE
+                                  MEM
+                                    NAME(_result)
+                                  CONST(45)
+                              CONST(0)
+                        AstStmtExpr @(13.13-13.18)
+                          exprOfType:
+                            Void
+                          exprImc:
+                            SEXPR
+                              STMTS
+                                MOVE
+                                  MEM
+                                    NAME(_result)
+                                  CONST(45)
+                              CONST(0)
+                          {Stmts}
+                              AstAssignStmt @(13.13-13.18)
+                                stmtOfType:
+                                  Void
+                                stmtImc:
+                                  MOVE
+                                    MEM
+                                      NAME(_result)
+                                    CONST(45)
+                                AstNameExpr(result) @(13.13-13.18)
+                                  declaredAt: 4.1-4.3
+                                  exprOfType:
+                                    Char
+                                  exprImc:
+                                    MEM
+                                      NAME(_result)
+                                AstConstExpr(CHAR,'-') @(13.22-13.24)
+                                  exprOfType:
+                                    Char
+                                  exprImc:
+                                    CONST(45)
+                      AstExprStmt @(15.13-15.18)
+                        stmtOfType:
+                          Void
+                        stmtImc:
+                          ESTMT
+                            SEXPR
+                              STMTS
+                                MOVE
+                                  MEM
+                                    NAME(_result)
+                                  CONST(48)
+                              CONST(0)
+                        AstStmtExpr @(15.13-15.18)
+                          exprOfType:
+                            Void
+                          exprImc:
+                            SEXPR
+                              STMTS
+                                MOVE
+                                  MEM
+                                    NAME(_result)
+                                  CONST(48)
+                              CONST(0)
+                          {Stmts}
+                              AstAssignStmt @(15.13-15.18)
+                                stmtOfType:
+                                  Void
+                                stmtImc:
+                                  MOVE
+                                    MEM
+                                      NAME(_result)
+                                    CONST(48)
+                                AstNameExpr(result) @(15.13-15.18)
+                                  declaredAt: 4.1-4.3
+                                  exprOfType:
+                                    Char
+                                  exprImc:
+                                    MEM
+                                      NAME(_result)
+                                AstConstExpr(CHAR,'0') @(15.22-15.24)
+                                  exprOfType:
+                                    Char
+                                  exprImc:
+                                    CONST(48)
+          AstExprStmt @(19.5-19.10)
+            stmtOfType:
+              Char
+            stmtImc:
+              ESTMT
+                MEM
+                  NAME(_result)
+            AstNameExpr(result) @(19.5-19.10)
+              declaredAt: 4.1-4.3
+              exprOfType:
+                Char
+              exprImc:
+                MEM
+                  NAME(_result)
+}#

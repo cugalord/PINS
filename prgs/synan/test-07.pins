@@ -1,0 +1,3 @@
+fun a():void = b(5);
+fun a():void = (3);
+fun a():void = a[3]^; #{ Should throw error! }#

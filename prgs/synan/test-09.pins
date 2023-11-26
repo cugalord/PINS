@@ -1,0 +1,30 @@
+typ character = char;
+var counter : int ;
+
+var array : [10]^int;
+
+fun main() : void = {
+    #{ Set counter, loop through array and set each value }#
+    counter = 0;
+
+    while (counter != 10) do
+        #{ Set value and increment counter }#
+        setArr(array, counter * 2 + 1, counter);
+        counter = counter + 1;
+    end;
+
+    print(array);
+};
+
+fun setArr(arr : [10]^int, value : int, index : int) : void = {
+    arr[index] = value;
+};
+
+fun print(arr : [10]^int) : void = {
+    #{ Reset counter, and print each value of array }#
+    counter = 0;
+
+    while (counter != 10) do
+        putInt(arr[counter]);
+    end;
+};

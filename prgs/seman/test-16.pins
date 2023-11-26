@@ -1,0 +1,158 @@
+var x : ^([10]int);
+var size : int;
+
+fun a(x : ^[10]int) : void = {
+    size = 0;
+
+    while (size < 10) do
+        #{Dereference x to be able to assign to it}#
+        (x^)[size] = size;
+        size = size + 1;
+    end;
+};
+
+fun caller() : void = {
+    a(x);
+};
+
+#{Should output: (locations might vary)
+  AstVarDecl(x) @(1.1-1.3)
+    AstPtrType @(1.9-1.9)
+      describesType:
+        Ptr
+          Arr(10)
+            Int
+      AstArrType @(1.11-1.11)
+        describesType:
+          Arr(10)
+            Int
+        AstAtomType(INT) @(1.15-1.17)
+          describesType:
+            Int
+        AstConstExpr(INT,10) @(1.12-1.13)
+          exprOfType:
+            Int
+  AstVarDecl(size) @(2.1-2.3)
+    AstAtomType(INT) @(2.12-2.14)
+      describesType:
+        Int
+  AstFunDecl(a) @(4.1-4.3)
+    {Pars}
+      AstParDecl(x) @(4.7-4.7)
+        AstPtrType @(4.11-4.11)
+          describesType:
+            Ptr
+              Arr(10)
+                Int
+          AstArrType @(4.12-4.12)
+            describesType:
+              Arr(10)
+                Int
+            AstAtomType(INT) @(4.16-4.18)
+              describesType:
+                Int
+            AstConstExpr(INT,10) @(4.13-4.14)
+              exprOfType:
+                Int
+    AstAtomType(VOID) @(4.23-4.26)
+      describesType:
+        Void
+    AstStmtExpr @(4.30-4.30)
+      exprOfType:
+        Void
+      {Stmts}
+          AstAssignStmt @(5.5-5.8)
+            stmtOfType:
+              Void
+            AstNameExpr(size) @(5.5-5.8)
+              declaredAt: 2.1-2.3
+              exprOfType:
+                Int
+            AstConstExpr(INT,0) @(5.12-5.12)
+              exprOfType:
+                Int
+          AstWhileStmt @(7.5-7.9)
+            stmtOfType:
+              Void
+            AstBinExpr(LTH) @(7.17-7.17)
+              exprOfType:
+                Int
+              AstNameExpr(size) @(7.12-7.15)
+                declaredAt: 2.1-2.3
+                exprOfType:
+                  Int
+              AstConstExpr(INT,10) @(7.19-7.20)
+                exprOfType:
+                  Int
+            AstExprStmt @(9.13-9.13)
+              stmtOfType:
+                Void
+              AstStmtExpr @(9.13-9.13)
+                exprOfType:
+                  Void
+                {Stmts}
+                    AstAssignStmt @(9.13-9.13)
+                      stmtOfType:
+                        Void
+                      AstBinExpr(ARR) @(9.13-9.13)
+                        exprOfType:
+                          Int
+                        AstPstExpr(PTR) @(9.11-9.11)
+                          exprOfType:
+                            Arr(10)
+                              Int
+                          AstNameExpr(x) @(9.10-9.10)
+                            declaredAt: 4.7-4.7
+                            exprOfType:
+                              Ptr
+                                Arr(10)
+                                  Int
+                        AstNameExpr(size) @(9.14-9.17)
+                          declaredAt: 2.1-2.3
+                          exprOfType:
+                            Int
+                      AstNameExpr(size) @(9.22-9.25)
+                        declaredAt: 2.1-2.3
+                        exprOfType:
+                          Int
+                    AstAssignStmt @(10.9-10.12)
+                      stmtOfType:
+                        Void
+                      AstNameExpr(size) @(10.9-10.12)
+                        declaredAt: 2.1-2.3
+                        exprOfType:
+                          Int
+                      AstBinExpr(ADD) @(10.21-10.21)
+                        exprOfType:
+                          Int
+                        AstNameExpr(size) @(10.16-10.19)
+                          declaredAt: 2.1-2.3
+                          exprOfType:
+                            Int
+                        AstConstExpr(INT,1) @(10.23-10.23)
+                          exprOfType:
+                            Int
+  AstFunDecl(caller) @(14.1-14.3)
+    {Pars}
+    AstAtomType(VOID) @(14.16-14.19)
+      describesType:
+        Void
+    AstStmtExpr @(14.23-14.23)
+      exprOfType:
+        Void
+      {Stmts}
+          AstExprStmt @(15.5-15.5)
+            stmtOfType:
+              Void
+            AstCallExpr(a) @(15.5-15.5)
+              declaredAt: 4.1-4.3
+              exprOfType:
+                Void
+              {Args}
+                AstNameExpr(x) @(15.7-15.7)
+                  declaredAt: 1.1-1.3
+                  exprOfType:
+                    Ptr
+                      Arr(10)
+                        Int
+}#

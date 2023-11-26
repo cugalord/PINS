@@ -1,0 +1,323 @@
+#{Test function calls intermediate code}#
+
+fun a() : int = 1;
+fun b(p1 : int) : int = a();
+fun c(p1 : int) : int = b(p1);
+fun d() : int =
+(
+    e(c(1))
+    where
+    fun e(p1 : int) : int = p1;
+);
+fun f() : int =
+(
+    g()
+    where
+    fun g() : int =
+    (
+        h(1)
+        where
+        fun h(p1 : int) : int = p1;
+    );
+);
+
+fun i(p1 : int) : int =
+(
+    1
+    where
+    fun j() : int =
+    (
+        2
+        where
+        fun k() : int =
+        (
+            3
+            where
+            fun l() : int = i(p1);
+        );
+    );
+);
+
+#{should output: (locations might vary)
+  AstFunDecl(a) @(3.1-3.3)
+      Frame(_a,16=16+0+0,T0,T1,1)
+    {Pars}
+    AstAtomType(INT) @(3.11-3.13)
+      describesType:
+        Int
+    AstConstExpr(INT,1) @(3.17-3.17)
+      exprOfType:
+        Int
+      exprImc:
+        CONST(1)
+  AstFunDecl(b) @(4.1-4.3)
+      Frame(_b,24=16+0+8,T2,T3,1)
+    {Pars}
+      AstParDecl(p1) @(4.7-4.8)
+          RelAccess(8,8,2)
+        AstAtomType(INT) @(4.12-4.14)
+          describesType:
+            Int
+    AstAtomType(INT) @(4.19-4.21)
+      describesType:
+        Int
+    AstCallExpr(a) @(4.25-4.25)
+      declaredAt: 3.1-3.3
+      exprOfType:
+        Int
+      exprImc:
+        CALL(_a)
+          TEMP(T2)
+      {Args}
+  AstFunDecl(c) @(5.1-5.3)
+      Frame(_c,32=16+0+16,T4,T5,1)
+    {Pars}
+      AstParDecl(p1) @(5.7-5.8)
+          RelAccess(8,8,2)
+        AstAtomType(INT) @(5.12-5.14)
+          describesType:
+            Int
+    AstAtomType(INT) @(5.19-5.21)
+      describesType:
+        Int
+    AstCallExpr(b) @(5.25-5.25)
+      declaredAt: 4.1-4.3
+      exprOfType:
+        Int
+      exprImc:
+        CALL(_b)
+          TEMP(T4)
+          MEM
+            BINOP
+              TEMP(T4)
+              CONST(8)
+      {Args}
+        AstNameExpr(p1) @(5.27-5.28)
+          declaredAt: 5.7-5.8
+          exprOfType:
+            Int
+          exprImc:
+            MEM
+              BINOP
+                TEMP(T4)
+                CONST(8)
+  AstFunDecl(d) @(6.1-6.3)
+      Frame(_d,32=16+0+16,T8,T9,1)
+    {Pars}
+    AstAtomType(INT) @(6.11-6.13)
+      describesType:
+        Int
+    AstWhereExpr @(9.5-9.9)
+      exprOfType:
+        Int
+      exprImc:
+        CALL(L0)
+          TEMP(T8)
+          CALL(_c)
+            TEMP(T8)
+            CONST(1)
+      {Decls}
+          AstFunDecl(e) @(10.5-10.7)
+              Frame(L0,16=16+0+0,T6,T7,2)
+            {Pars}
+              AstParDecl(p1) @(10.11-10.12)
+                  RelAccess(8,8,3)
+                AstAtomType(INT) @(10.16-10.18)
+                  describesType:
+                    Int
+            AstAtomType(INT) @(10.23-10.25)
+              describesType:
+                Int
+            AstNameExpr(p1) @(10.29-10.30)
+              declaredAt: 10.11-10.12
+              exprOfType:
+                Int
+              exprImc:
+                MEM
+                  BINOP
+                    TEMP(T6)
+                    CONST(8)
+      AstCallExpr(e) @(8.5-8.5)
+        declaredAt: 10.5-10.7
+        exprOfType:
+          Int
+        exprImc:
+          CALL(L0)
+            TEMP(T8)
+            CALL(_c)
+              TEMP(T8)
+              CONST(1)
+        {Args}
+          AstCallExpr(c) @(8.7-8.7)
+            declaredAt: 5.1-5.3
+            exprOfType:
+              Int
+            exprImc:
+              CALL(_c)
+                TEMP(T8)
+                CONST(1)
+            {Args}
+              AstConstExpr(INT,1) @(8.9-8.9)
+                exprOfType:
+                  Int
+                exprImc:
+                  CONST(1)
+  AstFunDecl(f) @(12.1-12.3)
+      Frame(_f,24=16+0+8,T14,T15,1)
+    {Pars}
+    AstAtomType(INT) @(12.11-12.13)
+      describesType:
+        Int
+    AstWhereExpr @(15.5-15.9)
+      exprOfType:
+        Int
+      exprImc:
+        CALL(L2)
+          TEMP(T14)
+      {Decls}
+          AstFunDecl(g) @(16.5-16.7)
+              Frame(L2,32=16+0+16,T12,T13,2)
+            {Pars}
+            AstAtomType(INT) @(16.15-16.17)
+              describesType:
+                Int
+            AstWhereExpr @(19.9-19.13)
+              exprOfType:
+                Int
+              exprImc:
+                CALL(L1)
+                  TEMP(T12)
+                  CONST(1)
+              {Decls}
+                  AstFunDecl(h) @(20.9-20.11)
+                      Frame(L1,16=16+0+0,T10,T11,3)
+                    {Pars}
+                      AstParDecl(p1) @(20.15-20.16)
+                          RelAccess(8,8,4)
+                        AstAtomType(INT) @(20.20-20.22)
+                          describesType:
+                            Int
+                    AstAtomType(INT) @(20.27-20.29)
+                      describesType:
+                        Int
+                    AstNameExpr(p1) @(20.33-20.34)
+                      declaredAt: 20.15-20.16
+                      exprOfType:
+                        Int
+                      exprImc:
+                        MEM
+                          BINOP
+                            TEMP(T10)
+                            CONST(8)
+              AstCallExpr(h) @(18.9-18.9)
+                declaredAt: 20.9-20.11
+                exprOfType:
+                  Int
+                exprImc:
+                  CALL(L1)
+                    TEMP(T12)
+                    CONST(1)
+                {Args}
+                  AstConstExpr(INT,1) @(18.11-18.11)
+                    exprOfType:
+                      Int
+                    exprImc:
+                      CONST(1)
+      AstCallExpr(g) @(14.5-14.5)
+        declaredAt: 16.5-16.7
+        exprOfType:
+          Int
+        exprImc:
+          CALL(L2)
+            TEMP(T14)
+        {Args}
+  AstFunDecl(i) @(24.1-24.3)
+      Frame(_i,16=16+0+0,T22,T23,1)
+    {Pars}
+      AstParDecl(p1) @(24.7-24.8)
+          RelAccess(8,8,2)
+        AstAtomType(INT) @(24.12-24.14)
+          describesType:
+            Int
+    AstAtomType(INT) @(24.19-24.21)
+      describesType:
+        Int
+    AstWhereExpr @(27.5-27.9)
+      exprOfType:
+        Int
+      exprImc:
+        CONST(1)
+      {Decls}
+          AstFunDecl(j) @(28.5-28.7)
+              Frame(L5,16=16+0+0,T20,T21,2)
+            {Pars}
+            AstAtomType(INT) @(28.15-28.17)
+              describesType:
+                Int
+            AstWhereExpr @(31.9-31.13)
+              exprOfType:
+                Int
+              exprImc:
+                CONST(2)
+              {Decls}
+                  AstFunDecl(k) @(32.9-32.11)
+                      Frame(L4,16=16+0+0,T18,T19,3)
+                    {Pars}
+                    AstAtomType(INT) @(32.19-32.21)
+                      describesType:
+                        Int
+                    AstWhereExpr @(35.13-35.17)
+                      exprOfType:
+                        Int
+                      exprImc:
+                        CONST(3)
+                      {Decls}
+                          AstFunDecl(l) @(36.13-36.15)
+                              Frame(L3,32=16+0+16,T16,T17,4)
+                            {Pars}
+                            AstAtomType(INT) @(36.23-36.25)
+                              describesType:
+                                Int
+                            AstCallExpr(i) @(36.29-36.29)
+                              declaredAt: 24.1-24.3
+                              exprOfType:
+                                Int
+                              exprImc:
+                                CALL(_i)
+                                  TEMP(T16)
+                                  MEM
+                                    BINOP
+                                      MEM
+                                        MEM
+                                          MEM
+                                            TEMP(T16)
+                                      CONST(8)
+                              {Args}
+                                AstNameExpr(p1) @(36.31-36.32)
+                                  declaredAt: 24.7-24.8
+                                  exprOfType:
+                                    Int
+                                  exprImc:
+                                    MEM
+                                      BINOP
+                                        MEM
+                                          MEM
+                                            MEM
+                                              TEMP(T16)
+                                        CONST(8)
+                      AstConstExpr(INT,3) @(34.13-34.13)
+                        exprOfType:
+                          Int
+                        exprImc:
+                          CONST(3)
+              AstConstExpr(INT,2) @(30.9-30.9)
+                exprOfType:
+                  Int
+                exprImc:
+                  CONST(2)
+      AstConstExpr(INT,1) @(26.5-26.5)
+        exprOfType:
+          Int
+        exprImc:
+          CONST(1)
+}#

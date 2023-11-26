@@ -1,0 +1,6 @@
+fun a(b:int):void = 3;
+fun a(b:int) : void = 3 == 2 | (4 == 3);
+fun a(b:int) : void = {if 3 == 2 then c = 2; d = 3; end; };
+fun a(b:int) : void = (x + 2 where typ a = ^char;);
+fun a(b:int) : void = new (3 + 2);
+fun a(b:int) : void = {while b != 2 do b = b - 1; end;};

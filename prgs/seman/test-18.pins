@@ -1,0 +1,9 @@
+var x : int;
+
+fun a () : void = {
+    x = 'a';
+};
+
+#{Should output: (locations might vary)
+:-( [4.9-4.11] Semantic error: Type mismatch: 'int', 'char'.
+}#

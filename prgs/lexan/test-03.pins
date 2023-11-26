@@ -1,0 +1,28 @@
+#{ Type checks }#
+
+var testInt : int = -321;
+var testVoid:void=none;
+var testChar1 : char = 'a';
+var testChar2: char = '\\';
+var testChar3: char = '\'';
+var ^testPtr1 : int = new int 32;
+var ^testPtr2 : char = testChar2;
+var ^testPtr3 = nil;
+
+fun method(n : int) : void n * 2 + 1;
+var a : int = new int[2]; var x : char = 'k';
+fun test(i : int) : void {
+    if (i != 2)
+    then
+        method(i);
+    else
+        method(i * 2);
+}
+
+#{ Test comments #{ }# #{ #{ }# }#
+var testComments : int = 24;
+}#
+
+var none : char = 'a';
+
+var _tmp : int = +2;

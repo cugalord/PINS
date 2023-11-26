@@ -1,0 +1,72 @@
+fun bubble(array : ^[50]int, size : int) : void=({
+    i = 0;
+    j = 0;
+    while(i < size) do
+        j = 0;
+        while (j < size - 1) do
+            if (array^[j] > array^[j + 1]) then
+                swap(array, j, j + 1);
+            end;
+            j = j + 1;
+        end;
+        i = i + 1;
+    end;
+}
+where
+    var i : int;
+    var j : int;
+);
+
+
+fun swap(array : ^[50]int, i : int, j : int) : void = ({
+    tmp = array^[i];
+    array^[i] = array^[j];
+    array^[j] = tmp;
+}
+where
+    var tmp : int;
+);
+
+#{ Fills the array with random numbers between 0 and 100. }#
+fun fill(array : ^[50]int, size : int) : void = ({
+    i = 0;
+    while (i < size) do
+        array^[i] = randInt(0, 100);
+        i = i + 1;
+    end;
+}
+where
+    var i : int;
+);
+
+fun print(array : ^[50]int, size : int) : void = ({
+    i = 0;
+    while (i < size) do
+        putInt((array^)[i]);
+        putChar(' ');
+        i = i + 1;
+    end;
+    putChar(endl());
+}
+where
+    var i : int;
+);
+
+fun endl() : char = (10 : char);
+
+var array : [50]int;
+
+fun main(): void = {
+    fill(^array, 50);
+    print(^array, 50);
+    bubble(^array, 50);
+    print(^array, 50);
+};
+
+
+#{ Forward declarations <- Author: Otzi}#
+fun putChar(c : char) : void = none;
+fun getChar() : char = (0 : char);
+fun putInt(i : int) : void = none;
+fun getInt() : int = 0;
+fun randInt(min : int, max : int) : int = 0;

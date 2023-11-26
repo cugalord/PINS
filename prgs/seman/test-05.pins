@@ -1,0 +1,6 @@
+typ integer = natural;
+typ natural = integer;
+
+#{Should output: (locations might vary)
+:-( [2.15-2.21] Semantic error: Types cannot be declared cyclically.
+}#

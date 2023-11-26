@@ -1,0 +1,14 @@
+var operator : char;
+    var firstNumber : int;
+    var secondNumber:int;
+    typ bla:void;
+
+fun testnafunkcija () : char
+fun testna2 ( balota : int, balota2: bool, test3:char) : void int = 2492 : randomneki
+char testChar = 'a';
+
+char testChar3 = ''';
+
+var testInt : int = -3;
+
+char testChar4 = 'a';

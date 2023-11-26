@@ -1,0 +1,12 @@
+fun called(x : int, y : char, z : ^int) : int = {
+    x + (y : int) + z^;
+};
+
+fun caller() : void = {
+    called(1, ^2, 'a');
+    none;
+};
+
+#{Should output: (locations might vary)
+:-( [6.15-6.15] Semantic error: Argument type mismatch: '^int', 'y: char'.
+}#

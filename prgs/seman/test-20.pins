@@ -1,0 +1,5 @@
+var x : [-3]int;
+
+#{Should output: (locations might vary)
+:-( [1.10-1.10] Semantic error: Array size must be higher than 0.
+}#

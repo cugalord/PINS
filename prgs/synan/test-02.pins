@@ -1,0 +1,3 @@
+fun a(b:int) : void = {if 3 then 2; 3; end; };
+fun a(b:int) : void = {if 3 then 2; 3; else 4; end; };
+fun a(b:int, c:^void) : void = (+3 : char);
